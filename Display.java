@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class Display {
     private JFrame frame;
+    private GamePanel gamePanel;
 
     // Tези 2те ще се вземат от CONSTANTS!
     private final int WIDTH = 800;
@@ -18,6 +19,8 @@ public class Display {
         this.frame.setMinimumSize(new Dimension(WIDTH, HEIGHT));
         this.frame.setLocationRelativeTo(null);
         this.frame.setIconImage(Toolkit.getDefaultToolkit().getImage("JavaGame/Images/Icon.png"));
-
+        
+        this.gamePanel = new GamePanel():
+        this.frame.add(gamePanel);
     }
 }
