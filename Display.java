@@ -8,8 +8,9 @@ public class Display {
     private GamePanel gamePanel;
 
     // Tези 2те ще се вземат от CONSTANTS!
-    private final int WIDTH = 800;
-    private final int HEIGHT = 600;
+    //Промених ги на  public и static, за да ги използвам в GamePanel
+    public static int WIDTH = 800;
+    public static int HEIGHT = 600;
 
     public Display(){
         this.frame = new JFrame("Brick Breaker Game version 1.1.1");
