@@ -30,7 +30,7 @@ public class GamePanel extends JPanel {
 
         running = true;
         
-        image = new BufferedImage(BBMain.WIDTH, BBMain.HEIGHT, BufferedImage.TYPE_INT_RGB);
+        image = new BufferedImage(Display.WIDTH, Display.HEIGHT, BufferedImage.TYPE_INT_RGB);
 
         g = (Graphics2D) image.getGraphics();
         //Това изчиства образа няма да е на пиксели 
@@ -63,7 +63,7 @@ public class GamePanel extends JPanel {
     public void draw(){
         //Basckground - бял цвят и от и размерите на екрана
         g.setColor(Color.WHITE);
-        g.fillRect(0, 0, BBMain.WIDTH, BBMain.HEIGHT);
+        g.fillRect(0, 0, Display.WIDTH, Dispay.HEIGHT);
         
         //Рисуване на компонентите 
         ball.draw(g);
@@ -75,7 +75,7 @@ public class GamePanel extends JPanel {
 
         Graphics2D g2 = (Graphics2D) g;
 
-        g2.drawImage(image, 0, 0, BBMain.WIDTH, BBMain.HEIGHT, null);
+        g2.drawImage(image, 0, 0, Display.WIDTH, Display.HEIGHT, null);
 
         g2.dispose();
 
