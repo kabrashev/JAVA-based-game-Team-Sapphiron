@@ -3,7 +3,7 @@ package JavaGame;
 import javax.swing.*;
 
 /**
- * Created by petar on 2016-04-04.
+ * Предлагам от тук да тръгва приложението, като извиква останалите класове :) 
  */
 public class Game {
     public static void main(String[] args) {
