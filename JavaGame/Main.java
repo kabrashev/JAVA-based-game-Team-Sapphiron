@@ -20,7 +20,10 @@ public class Main implements Constants {
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage("JavaGame/Images/Icon.png"));
         frame.setVisible(true);
         //adds the gamePanel to the frame
+        gamePanel = new GamePanel();
         frame.add(gamePanel);
+        
+        gamePanel.playGame();
         // board = new Board(WINDOW_WIDTH,WINDOW_HEIGHT);
 
         // container = frame.getContentPane();
