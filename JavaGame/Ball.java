@@ -1,5 +1,3 @@
-package brickbreaker;
-
 import java.awt.*;
 
 public class Ball {
@@ -28,7 +26,7 @@ public class Ball {
     }
 
     public void update(){
-        //setPosition();
+        setPosition();
     }
 
     public void setPosition(){
