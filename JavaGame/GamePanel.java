@@ -19,7 +19,7 @@ public class GamePanel extends JPanel {
 
         running = true;
 
-        image = new BufferedImage(BBMain.WIDTH, BBMain.HEIGHT, BufferedImage.TYPE_INT_RGB);
+        image = new BufferedImage(Constants.WIDTH, Constants.HEIGHT, BufferedImage.TYPE_INT_RGB);
 
         g = (Graphics2D) image.getGraphics();
 
@@ -54,7 +54,7 @@ public class GamePanel extends JPanel {
     public void draw(){
         //Basckground
         g.setColor(Color.WHITE);
-        g.fillRect(0, 0, BBMain.WIDTH, BBMain.HEIGHT);
+        g.fillRect(0, 0, Constants.WIDTH, Constants.HEIGHT);
 
         ball.draw(g);
         paddle.draw(g);
@@ -66,7 +66,7 @@ public class GamePanel extends JPanel {
 
         Graphics2D g2 = (Graphics2D) g;
 
-        g2.drawImage(image, 0, 0, BBMain.WIDTH, BBMain.HEIGHT, null);
+        g2.drawImage(image, 0, 0, Constants.WIDTH, Constants.HEIGHT, null);
 
         g2.dispose();
 
