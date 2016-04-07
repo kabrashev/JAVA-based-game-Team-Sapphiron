@@ -13,7 +13,7 @@ public class Main implements Constants {
         frame = new JFrame("Brick Breaker Game version 1.1.1");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
-        frame.setMinimumSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
+        frame.setMinimumSize(new Dimension(WIDTH, HEIGHT));
         frame.setLocationRelativeTo(null);
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage("JavaGame/Images/Icon.png"));
 
