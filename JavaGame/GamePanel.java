@@ -46,9 +46,19 @@ public class GamePanel extends JPanel {
             }
         }
     }
+    
+        public void checkCollisions(){
+        Rectangle ballRect = ball.getRect();
+        Rectangle paddleRect = paddle.getRect();
+
+        if(ballRect.intersects(paddleRect)){
+            ball.setDirectionY(-ball.getDirectionY());
+        }
+    }
 
     public void update(){
-      //Update
+        checkCollisions();
+        ball.update();
     }
 
     public void draw(){
