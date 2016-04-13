@@ -3,8 +3,9 @@ package JavaGame;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements Constants {
     //Fields running is true, when the game is running, image is what we show, g is drawing on the image 
     boolean running;
     private BufferedImage image;
@@ -12,8 +13,12 @@ public class GamePanel extends JPanel {
     //add the ball and the paddle 
     private Ball ball;
     private Paddle paddle;
+    private Brick[][] brick = new Brick[16][5];
+    private Color[][] colors = {{RED_BRICK}, {YELLOW_BRICK}, {GREEN_BRICK}, {ORANGE_BRICK}, {BLUE_BRICK}};
 
-    public GamePanel(){
+    public GamePanel() {
+
+        createBricks();
 
         ball = new Ball();
 
@@ -29,11 +34,21 @@ public class GamePanel extends JPanel {
 
     }
 
+    private void createBricks() {
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 5; j++) {
+                Random randomNumber = new Random();
+                Color color = colors[randomNumber.nextInt(5)][0];
+                brick[i][j] = new Brick((i * BRICK_WIDTH), ((j * BRICK_HEIGHT) + (BRICK_HEIGHT / 2)), (BRICK_WIDTH - 3), (BRICK_HEIGHT - 3), color);
+            }
+        }
+    }
 
-    public void playGame(){
+
+    public void playGame() {
         //Game Loop
 
-        while(running){
+        while (running) {
             //Update
             update();
             //Draw
@@ -41,40 +56,67 @@ public class GamePanel extends JPanel {
             //displayImage
             repaint();
 
-            try{
+            try {
                 Thread.sleep(10);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
-    
-        public void checkCollisions(){
+
+    public void checkCollisions() {
         Rectangle ballRect = ball.getRect();
         Rectangle paddleRect = paddle.getRect();
 
-        if(ballRect.intersects(paddleRect)){
+        if (ballRect.intersects(paddleRect)) {
             ball.setDirectionY(-ball.getDirectionY());
+        }
+        checkBricks((int) ball.getX(), (int) ball.getY());
+    }
+
+    public void checkBricks(int x1, int y1) {
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (brick[i][j].hitBottom(x1, y1)) {
+                    ball.setDirectionY(-ball.getDirectionY());
+                }
+                if (brick[i][j].hitTop(x1, y1)) {
+                    ball.setDirectionY(-ball.getDirectionY());
+                }
+                if (brick[i][j].hitLeft(x1, y1)) {
+                    ball.setDirectionX(-ball.getDirectionX());
+                }
+                if (brick[i][j].hitRight(x1, y1)) {
+                    ball.setDirectionX(-ball.getDirectionX());
+                }
+            }
         }
     }
 
-    public void update(){
+    public void update() {
         checkCollisions();
         ball.update();
     }
 
-    public void draw(){
+    public void draw() {
         //Background
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, Constants.WIDTH, Constants.HEIGHT);
 
         ball.draw(g);
         paddle.draw(g);
+
+        //bricks
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 5; j++) {
+                brick[i][j].draw(g);
+            }
+        }
     }
 
 
-     @Override
-    public void paintComponent(Graphics g){
+    @Override
+    public void paintComponent(Graphics g) {
 
         Graphics2D g2 = (Graphics2D) g;
 
@@ -83,4 +125,4 @@ public class GamePanel extends JPanel {
         g2.dispose();
 
     }
-  }
+}
