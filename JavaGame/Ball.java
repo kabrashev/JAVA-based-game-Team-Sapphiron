@@ -44,11 +44,11 @@ public class Ball {
             directionY = -directionY;
         }
 
-        if(x > BBMain.WIDTH -  ballSize){
+        if(x > Main.WIDTH -  ballSize){
             directionX =  -directionX;
         }
 
-        if(y > BBMain.HEIGHT - ballSize){
+        if(y > Main.HEIGHT - ballSize){
             directionY = -directionY;
         }
     }
