@@ -18,6 +18,29 @@ public class Ball {
         directionX = 1;
         directionY = 3;
     }
+    public double getX(){
+        return x;
+    }
+
+    public void setX(double x){
+        this.x = x;
+    }
+
+    public double getY(){
+        return y;
+    }
+
+    public void setY(double y){
+        this.y = y;
+    }
+
+    public double getDirectionX(){
+        return directionX;
+    }
+
+    public void setDirectionX(double direction){
+        directionX = direction;
+    }
 
     public double getDirectionY(){
         return directionY;
