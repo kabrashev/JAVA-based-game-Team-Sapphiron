@@ -64,7 +64,7 @@ public class GamePanel extends JPanel {
     }
 
     public void draw(){
-        //Background
+        //Basckground
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, Constants.WIDTH, Constants.HEIGHT);
 
