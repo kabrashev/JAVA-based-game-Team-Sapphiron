@@ -16,7 +16,7 @@ public class Ball {
         x = 200;
         y = 200;
         directionX = 1;
-        directionY = 3;
+        directionY = 1;
     }
     public double getX(){
         return x;
