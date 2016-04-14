@@ -22,7 +22,14 @@ public class Paddle {
         g.fillRect((int) x, POSITIONY, width, height);
     }
 
-    public Rectangle getRect(){
+    // The x coordinate will be equal to the
+    public void movePaddle(int mouseXPos){
+        x = mouseXPos;
+    }
+
+    public Rectangle getRect() {
         return new Rectangle((int) x, POSITIONY, width, height);
     }
+
+
 }

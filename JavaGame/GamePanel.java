@@ -2,19 +2,26 @@ package JavaGame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class GamePanel extends JPanel implements Constants {
-    //Fields running is true, when the game is running, image is what we show, g is drawing on the image 
-    boolean running;
+    //Fields running is true, when the game is running, image is what we show, g is drawing on the image
+    private boolean running;
     private BufferedImage image;
     private Graphics2D g;
-    //add the ball and the paddle 
+    //add the ball and the paddle
     private Ball ball;
     private Paddle paddle;
     private Brick[][] brick = new Brick[16][5];
-    private Color[][] colors = {{RED_BRICK}, {YELLOW_BRICK}, {GREEN_BRICK}, {ORANGE_BRICK}, {BLUE_BRICK}};
+    private Color[] colors = {RED_BRICK, YELLOW_BRICK, GREEN_BRICK, ORANGE_BRICK, BLUE_BRICK};
+
+    private myMouseMotionListener mouseListener;
+    private BoardListener boardListener;
 
     public GamePanel() {
 
@@ -25,6 +32,12 @@ public class GamePanel extends JPanel implements Constants {
         paddle = new Paddle();
 
         running = true;
+
+        //adding the mouse Listener
+        mouseListener = new myMouseMotionListener();
+        boardListener = new BoardListener();
+        addMouseMotionListener(mouseListener);
+        addKeyListener(boardListener);
 
         image = new BufferedImage(Constants.WIDTH, Constants.HEIGHT, BufferedImage.TYPE_INT_RGB);
 
@@ -38,7 +51,7 @@ public class GamePanel extends JPanel implements Constants {
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 5; j++) {
                 Random randomNumber = new Random();
-                Color color = colors[randomNumber.nextInt(5)][0];
+                Color color = colors[randomNumber.nextInt(5)];
                 brick[i][j] = new Brick((i * BRICK_WIDTH), ((j * BRICK_HEIGHT) + (BRICK_HEIGHT / 2)), (BRICK_WIDTH - 3), (BRICK_HEIGHT - 3), color);
             }
         }
@@ -57,7 +70,7 @@ public class GamePanel extends JPanel implements Constants {
             repaint();
 
             try {
-                Thread.sleep(10);
+                Thread.sleep(5);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -124,5 +137,33 @@ public class GamePanel extends JPanel implements Constants {
 
         g2.dispose();
 
+    }
+
+    private class myMouseMotionListener implements MouseMotionListener {
+        @Override
+        public void mouseDragged(MouseEvent e) {
+
+        }
+
+
+        // The mouse changes the position of the paddle
+        @Override
+        public void mouseMoved(MouseEvent e) {
+            paddle.movePaddle(e.getX());
+        }
+    }
+
+    private class BoardListener extends KeyAdapter {
+        @Override
+        public void keyPressed(KeyEvent ke) {
+            int key = ke.getKeyCode();
+            if (key == KeyEvent.VK_SPACE) {
+                if (running == true) {
+                    running = false;
+                }else {
+                    running = true;
+                }
+            }
+        }
     }
 }
