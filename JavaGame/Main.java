@@ -12,7 +12,7 @@ public class Main implements Constants {
     public static void main(String[] args) {
 
         // Show a image in the center of the screen for certain amount of time
-        showSplash(1000);
+        showSplash(1000, "images/splash.jpg");
 
         // Display a JFrame instance
         createFrame("Brick Breaker Game version 1.1.1");
@@ -28,10 +28,10 @@ public class Main implements Constants {
 
     }
 
-    private static void showSplash(int duration) {
+    private static void showSplash(int duration, String imagePath) {
         // Build the splash screen
         JWindow window = new JWindow();
-        window.getContentPane().add(new JLabel(new ImageIcon("images/icon.png"), SwingConstants.CENTER));
+        window.getContentPane().add(new JLabel(new ImageIcon(imagePath), SwingConstants.CENTER));
         window.pack();
         window.setLocationRelativeTo(null);
 
@@ -57,6 +57,7 @@ public class Main implements Constants {
         frame.setLocationRelativeTo(null);
         frame.setIconImage(new ImageIcon("images/icon.png").getImage());
         frame.setVisible(true);
+
     }
 
 }
