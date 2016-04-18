@@ -67,8 +67,9 @@ public class GamePanel extends JPanel implements Constants {
             //Draw
             draw();
             //displayImage
-            repaint();
 
+            checkIfOut(ball.getY());
+            repaint();
             try {
                 Thread.sleep(5);
             } catch (Exception e) {
@@ -84,7 +85,7 @@ public class GamePanel extends JPanel implements Constants {
         if (ballRect.intersects(paddleRect)) {
             ball.setDirectionY(-ball.getDirectionY());
         }
-        checkBricks((int) ball.getX(), (int) ball.getY());
+        checkBricks(ball.getX(), ball.getY());
     }
 
     public void checkBricks(int x1, int y1) {
@@ -106,13 +107,21 @@ public class GamePanel extends JPanel implements Constants {
         }
     }
 
+    public void checkIfOut(int y1) {
+        if (y1 > Constants.HEIGHT - 90) {
+            ball.reset();
+            repaint();
+        }
+    }
+
+
     public void update() {
         checkCollisions();
         ball.update();
     }
 
     public void draw() {
-        //Background
+        // Background
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, Constants.WIDTH, Constants.HEIGHT);
 
@@ -160,7 +169,7 @@ public class GamePanel extends JPanel implements Constants {
             if (key == KeyEvent.VK_SPACE) {
                 if (running == true) {
                     running = false;
-                }else {
+                } else {
                     running = true;
                 }
             }
