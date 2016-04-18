@@ -24,7 +24,7 @@ public class Paddle {
 
     // The x coordinate will be equal to the
     public void movePaddle(int mouseXPos){
-        x = mouseXPos;
+        x = mouseXPos - width/2;
     }
 
     public Rectangle getRect() {

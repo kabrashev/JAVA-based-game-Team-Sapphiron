@@ -10,8 +10,6 @@ public interface Constants {
     //Size and number of bricks
     public static final int BRICK_WIDTH = 50;
     public static final int BRICK_HEIGHT = 25;
-    public static final int MAX_BRICKS = 80;
-    public static final int NO_BRICKS = 0;
 
     //Brick Colors
     public static final Color BLUE_BRICK = Color.blue;
@@ -19,4 +17,7 @@ public interface Constants {
     public static final Color ORANGE_BRICK = Color.orange;
     public static final Color GREEN_BRICK = Color.green;
     public static final Color YELLOW_BRICK = Color.yellow;
+
+    //Player Lives
+    public static final int PLAYER_LIVES = 3;
 }

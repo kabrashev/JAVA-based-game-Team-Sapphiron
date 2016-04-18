@@ -19,6 +19,7 @@ public class GamePanel extends JPanel implements Constants {
     private Paddle paddle;
     private Brick[][] brick = new Brick[16][5];
     private Color[] colors = {RED_BRICK, YELLOW_BRICK, GREEN_BRICK, ORANGE_BRICK, BLUE_BRICK};
+    private int numberOfLives = PLAYER_LIVES;
 
     private myMouseMotionListener mouseListener;
     private BoardListener boardListener;
@@ -109,8 +110,14 @@ public class GamePanel extends JPanel implements Constants {
 
     public void checkIfOut(int y1) {
         if (y1 > Constants.HEIGHT - 90) {
+            numberOfLives--;
+            if (numberOfLives == 0) {
+                createBricks();
+                numberOfLives = PLAYER_LIVES;
+            }
             ball.reset();
             repaint();
+
         }
     }
 
