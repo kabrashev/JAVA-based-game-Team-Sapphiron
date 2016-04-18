@@ -4,10 +4,10 @@ import java.awt.*;
 
 public class Ball {
 
-    private double x;
-    private double y;
-    private double directionX;
-    private double directionY;
+    private int x;
+    private int y;
+    private int directionX;
+    private int directionY;
 
     private int ballSize = 30;
 
@@ -18,35 +18,35 @@ public class Ball {
         directionX = 1;
         directionY = 1;
     }
-    public double getX(){
+    public int getX(){
         return x;
     }
 
-    public void setX(double x){
+    public void setX(int x){
         this.x = x;
     }
 
-    public double getY(){
+    public int getY(){
         return y;
     }
 
-    public void setY(double y){
+    public void setY(int y){
         this.y = y;
     }
 
-    public double getDirectionX(){
+    public int getDirectionX(){
         return directionX;
     }
 
-    public void setDirectionX(double direction){
+    public void setDirectionX(int direction){
         directionX = direction;
     }
 
-    public double getDirectionY(){
+    public int getDirectionY(){
         return directionY;
     }
 
-    public void setDirectionY(double direction){
+    public void setDirectionY(int direction){
         directionY = direction;
     }
 
@@ -79,6 +79,13 @@ public class Ball {
     public void draw(Graphics2D g){
         g.setColor(Color.DARK_GRAY);
         g.fillOval((int)x,(int) y, ballSize, ballSize);
+    }
+
+    public void reset() {
+        x = 245;
+        y = 245;
+        directionX = 1;
+        directionY = 1;
     }
 
     public  Rectangle getRect(){
