@@ -1,35 +1,49 @@
 package JavaGame;
 
+
+//This "Paddle" class extends the "Structure" class. It is used for the player's paddle in the game.
+
+//Imports
 import java.awt.*;
+import java.awt.event.*;
 
-public class Paddle {
+//Class definition
+public class Paddle extends Structure implements Constants {
+    //Variables
+    private int xSpeed;
 
-    private double x;
-    private final int POSITIONY = Constants.HEIGHT - 100;
-    private int width, height;
-
-    public Paddle(){
-        width = 100;
-        height = 20;
-        x = Constants.WIDTH/2 - width/2;
+    //Constructor
+    public Paddle(int x, int y, int width, int height, Color color) {
+        super(x, y, width, height, color);
     }
 
-    public void update(){
+    //Draws the paddle
+    @Override
+    public void draw(Graphics g) {
+        g.setColor(color);
+        g.fillRect(x, y, width, height);
     }
 
-    public void draw(Graphics2D g){
-        g.setColor(Color.DARK_GRAY);
-        g.fillRect((int) x, POSITIONY, width, height);
+    //Places the paddle back in starting position at center of screen
+    public void reset() {
+        x = PADDLE_X_START;
+        y = PADDLE_Y_START;
     }
 
-    // The x coordinate will be equal to the
-    public void movePaddle(int mouseXPos){
-        x = mouseXPos - width/2;
+    //Checks if the ball hit the paddle
+    public boolean hitPaddle(int ballX, int ballY) {
+        if ((ballX >= x) && (ballX <= x + width) && ((ballY >= y) && (ballY <= y + height))) {
+            return true;
+        }
+        return false;
     }
 
-    public Rectangle getRect() {
-        return new Rectangle((int) x, POSITIONY, width, height);
+    //Resizes the paddle if it touches an item, then returns true or false
+    public boolean caughtItem(Item i) {
+        if ((i.getX() < x + width) && (i.getX() + i.getWidth() > x) && (y == i.getY() || y == i.getY() - 1)) {
+            i.resizePaddle(this);
+            return true;
+        }
+        return false;
     }
-
-
 }
