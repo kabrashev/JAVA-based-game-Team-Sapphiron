@@ -1,65 +1,66 @@
-package OurGAME;
+package JavaGame;
 
+//This "Ball" class extends the "Structure" class. It is for the ball used in the game.
+
+//Imports
 import java.awt.*;
 
-public class Ball {
+//Class definition
+public class Ball extends Structure implements Constants {
+    //Variables
+    private boolean onScreen;
+    private int xDir = 1, yDir = -1;
 
-    private double x;
-    private double y;
-    private double directionX;
-    private double directionY;
-
-    private int ballSize = 30;
-
-    public Ball(int x, int y, int directionX, int directionY, Color some){
-
-        x = 200;
-        y = 200;
-        directionX = 1;
-        directionY = 3;
+    //Constructor
+    public Ball(int x, int y, int width, int height, Color color) {
+        super(x, y, width, height, color);
+        setOnScreen(true);
     }
 
-    public double getDirectionY(){
-        return directionY;
+    //Draw the ball
+    @Override
+    public void draw(Graphics g) {
+        g.setColor(color);
+        g.fillOval(x, y, width, height);
     }
 
-    public void setDirectionY(double direction){
-        directionY = direction;
+    //Moves the ball
+    public void move() {
+        x += xDir;
+        y += yDir;
     }
 
-    public void update(){
-        setPosition();
+    //Resets the ball to original position at center of screen
+    public void reset() {
+        x = BALL_X_START;
+        y = BALL_Y_START;
+        xDir = 1;
+        yDir = -1;
     }
 
-    public void setPosition(){
-        x += directionX;
-        y += directionY;
-
-        //if it hit a wall, inverse direction
-        if(x < 0){
-            directionX = -directionX;
-        }
-
-        if(y < 0){
-            directionY = -directionY;
-        }
-
-        if(x > Main.WIDTH -  ballSize){
-            directionX =  -directionX;
-        }
-
-        if(y > Main.HEIGHT - ballSize){
-            directionY = -directionY;
-        }
+    //Mutator methods
+    public void setXDir(int xDir) {
+        this.xDir = xDir;
     }
 
-    public void draw(Graphics2D g){
-        g.setColor(Color.DARK_GRAY);
-        g.fillOval((int)x,(int) y, ballSize, ballSize);
+    public void setYDir(int yDir) {
+        this.yDir = yDir;
     }
 
-    public  Rectangle getRect(){
-        return new Rectangle((int)x, (int)y, ballSize, ballSize);
+    public void setOnScreen(boolean onScreen) {
+        this.onScreen = onScreen;
     }
 
+    //Accessor methods
+    public int getXDir() {
+        return xDir;
+    }
+
+    public int getYDir() {
+        return yDir;
+    }
+
+    public boolean isOnScreen() {
+        return onScreen;
+    }
 }
