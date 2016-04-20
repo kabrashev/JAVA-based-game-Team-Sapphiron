@@ -4,10 +4,7 @@ import javax.swing.*;
 
 public class Main implements Constants {
     private static JFrame frame;
-    //private static Board board;
-    // GamePanel - maybe is like the board, but not sure
     private static GamePanel gamePanel;
-    //private static Container container;
 
     public static void main(String[] args) {
 
@@ -17,7 +14,7 @@ public class Main implements Constants {
         // Display a JFrame instance
         createFrame("Brick Breaker Game version 1.1.1");
 
-        //adds the gamePanel to the frame
+        // Adds the gamePanel to the frame
         gamePanel = new GamePanel();
         frame.add(gamePanel);
         gamePanel.run();
