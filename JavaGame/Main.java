@@ -20,11 +20,7 @@ public class Main implements Constants {
         //adds the gamePanel to the frame
         gamePanel = new GamePanel();
         frame.add(gamePanel);
-        gamePanel.playGame();
-
-        // board = new Board(WINDOW_WIDTH,WINDOW_HEIGHT);
-        // container = frame.getContentPane();
-        // container.add(board);
+        gamePanel.run();
 
     }
 
